@@ -5,3 +5,19 @@
 @theme {
   --font-sans: 'DM Sans', sans-serif;
 }
+
+@layer base {
+  body {
+    @apply font-sans text-base leading-relaxed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold;
+  }
+
+  p {
+    @apply leading-7;
+  }
+}
