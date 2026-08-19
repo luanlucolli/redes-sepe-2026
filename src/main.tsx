@@ -39,7 +39,7 @@ function Navbar() {
 
 function Hero() {
   return <header id="top" className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-[linear-gradient(0deg,#062c4baa,#062c4b22),url('/images/banner-mobile.png')] bg-cover bg-center px-5 py-[92px] pb-[72px] text-center text-white min-[701px]:flex-row min-[701px]:items-center min-[701px]:bg-[linear-gradient(90deg,#062b4dcc_0%,#062b4d36_58%,#062b4d11),url('/images/foto-banner.png')] min-[701px]:bg-center min-[701px]:py-0 min-[701px]:text-left">
-    <img className="pointer-events-none absolute left-[-18vw] top-1/2 z-0 block w-[125vw] -translate-y-1/2 opacity-[.15] min-[701px]:left-auto min-[701px]:right-[-18vw] min-[701px]:z-0 min-[701px]:w-[clamp(650px,75vw,1100px)] min-[701px]:opacity-[.18] min-[1600px]:right-[-12vw]" src="/images/redes-logo-sem-texto.png" alt="" aria-hidden="true" />
+    <img className="pointer-events-none absolute left-auto right-[-48vw] top-1/2 z-0 block w-[260vw] -translate-y-1/2 opacity-[.15] min-[701px]:right-[-18vw] min-[701px]:z-0 min-[701px]:w-[clamp(650px,75vw,1100px)] min-[701px]:opacity-[.18] min-[1600px]:right-[-12vw]" src="/images/redes-logo-sem-texto.png" alt="" aria-hidden="true" />
     <div className="relative z-10 w-full max-w-[520px] min-[701px]:ml-[5vw] min-[701px]:w-[min(1200px,90%)] min-[701px]:max-w-none min-[701px]:pt-[50px]">
       <p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#75d5f3] min-[701px]:text-sm">REDES DE COMPUTADORES • IFC ARAQUARI</p>
       <h1 className="max-w-[11ch] [font-family:'Space_Grotesk'] text-[clamp(3.25rem,15vw,5.5rem)] font-semibold leading-[.92] tracking-[-.08em] min-[701px]:text-[clamp(4rem,8vw,7.4rem)]">Semana Acadêmica<br /><span className="text-[#6dd2ef]">2026</span></h1>
