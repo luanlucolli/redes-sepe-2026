@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
@@ -91,4 +91,4 @@ function Location() {
   </section>
 }
 
-createRoot(document.getElementById('root')!).render(<App />)
+export const createRoot = ViteReactSSG(<App />)
