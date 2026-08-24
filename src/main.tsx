@@ -73,8 +73,21 @@ function Organization() { return <section id="organizacao" className="bg-[#f5f7f
 function App() { return <div className="scroll-smooth bg-[#f5f7f8] font-sans text-[#102b43]"><Navbar /><Hero /><main><Programacao /><Sponsors /><Location /><Organization /></main><footer className="flex flex-col gap-2 bg-[#062c4b] px-[8vw] py-[22px] text-center text-xs leading-5 tracking-[.04em] text-[#a9c5d1] min-[701px]:flex-row min-[701px]:justify-between"><span>SEPE 2026</span><span>Organizado pelos graduandos de Redes de Computadores</span></footer></div> }
 
 function Location() {
+  const [activeImage, setActiveImage] = useState(0)
   const mapUrl = 'https://www.google.com/maps?q=Instituto%20Federal%20Catarinense%20-%20Campus%20Araquari%2C%20Araquari%20-%20SC&output=embed'
-  return <section id="local" className="bg-[linear-gradient(90deg,#062c4bef,#062c4bcc),url('/images/ifc-local.jpg')] bg-cover bg-center px-5 py-20 text-white min-[701px]:py-[110px]"><div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-[45px] min-[701px]:px-[5vw] min-[701px]:grid-cols-[1fr_1.08fr] min-[701px]:gap-[9%]"><div><p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#71d0ee] min-[701px]:text-sm">ONDE VAI SER</p><h2 className="[font-family:'Space_Grotesk'] text-[clamp(2.15rem,5vw,3.75rem)] font-semibold leading-[1.06] tracking-[-.05em]">A gente se encontra<br />no IFC Araquari.</h2><p className="mt-6 max-w-[440px] text-base leading-7 text-[#d6e8ee]">O evento acontece no Campus Araquari. Se você ainda não conhece o lugar, fica aqui o mapa para ajudar.</p><div className="mt-7 flex items-start gap-2.5 text-sm leading-6 text-[#c9e0e8]"><MapPin className="w-5 shrink-0 text-[#6dd2ef]" /> Rodovia BR 280, km 27<br />Araquari - SC</div></div><div className="border-[10px] border-white/[.09] shadow-2xl"><iframe className="block h-[270px] w-full border-0 min-[701px]:h-[350px]" title="Mapa do IFC Campus Araquari" src={mapUrl} loading="lazy" /></div></div></section>
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveImage(current => (current + 1) % 2)
+    }, 5000)
+    return () => window.clearInterval(interval)
+  }, [])
+
+  return <section id="local" className="relative overflow-hidden px-5 py-20 text-white min-[701px]:py-[110px]">
+    <div aria-hidden="true" className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${activeImage === 0 ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundImage: "url('/images/ifc-local.jpg')" }} />
+    <div aria-hidden="true" className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${activeImage === 1 ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundImage: "url('/images/ifc-local-2.jpg')" }} />
+    <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,#062c4bef,#062c4bcc)]" />
+    <div className="relative z-10 mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-[45px] min-[701px]:px-[5vw] min-[701px]:grid-cols-[1fr_1.08fr] min-[701px]:gap-[9%]"><div><p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#71d0ee] min-[701px]:text-sm">ONDE VAI SER</p><h2 className="[font-family:'Space_Grotesk'] text-[clamp(2.15rem,5vw,3.75rem)] font-semibold leading-[1.06] tracking-[-.05em]">A gente se encontra<br />no IFC Araquari.</h2><p className="mt-6 max-w-[440px] text-base leading-7 text-[#d6e8ee]">O evento acontece no Campus Araquari. Se você ainda não conhece o lugar, fica aqui o mapa para ajudar.</p><div className="mt-7 flex items-start gap-2.5 text-sm leading-6 text-[#c9e0e8]"><MapPin className="w-5 shrink-0 text-[#6dd2ef]" /> Rodovia BR 280, km 27<br />Araquari - SC</div></div><div className="border-[10px] border-white/[.09] shadow-2xl"><iframe className="block h-[270px] w-full border-0 min-[701px]:h-[350px]" title="Mapa do IFC Campus Araquari" src={mapUrl} loading="lazy" /></div></div>
+  </section>
 }
 
 createRoot(document.getElementById('root')!).render(<App />)
