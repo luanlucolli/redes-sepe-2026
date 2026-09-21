@@ -3,13 +3,44 @@ import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
-type Placeholder = { number: string; person: string; title: string }
+type ScheduleEvent = { number: string; time: string; title: string; detail?: string }
+type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
 
-const schedulePlaceholders: Placeholder[] = [
-  { number: '01', person: 'Nome a definir', title: 'Tema da palestra' },
-  { number: '02', person: 'Nome a definir', title: 'Tema da palestra' },
-  { number: '03', person: 'Nome a definir', title: 'Tema da palestra' },
-  { number: '04', person: 'Nome a definir', title: 'Tema da palestra' },
+const schedule: ScheduleDay[] = [
+  {
+    number: '01',
+    date: '05/10',
+    weekday: 'Seg',
+    events: [
+      { number: '01', time: '19h30 às 20h30', title: 'Segurança' },
+      { number: '02', time: '21h às 22h', title: 'Núcleo Jovem', detail: 'Tema: Empreendedorismo e Associativismo' },
+    ],
+  },
+  { number: '02', date: '06/10', weekday: 'Ter', events: [] },
+  {
+    number: '03',
+    date: '07/10',
+    weekday: 'Qua',
+    events: [
+      { number: '03', time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group' },
+      { number: '04', time: '21h às 22h', title: 'CREAJunior' },
+    ],
+  },
+  {
+    number: '04',
+    date: '08/10',
+    weekday: 'Qui',
+    events: [{ number: '05', time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!' }],
+  },
+  {
+    number: '05',
+    date: '09/10',
+    weekday: 'Sex',
+    events: [
+      { number: '06', time: '19h30 às 20h30', title: 'Git (Rodrigo)' },
+      { number: '07', time: '21h às 22h', title: 'Git (Rodrigo)' },
+    ],
+  },
 ]
 
 function Mark({ children }: { children: ReactNode }) {
@@ -52,11 +83,14 @@ function Hero() {
 
 function Programacao() {
   return <section id="programacao" className="mx-auto max-w-[1200px] bg-[#f5f7f8] px-[6vw] py-20 min-[701px]:px-[5vw] min-[701px]:py-[110px]">
-    <div className="text-center"><p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#176ca8] min-[701px]:text-sm">PROGRAMAÇÃO 2026</p><h2 className="[font-family:'Space_Grotesk'] text-[clamp(2.15rem,5vw,3.75rem)] font-semibold leading-[1.06] tracking-[-.05em]">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="mx-auto mt-5 max-w-[650px] text-base leading-7 text-[#678095]">A programação ainda está sendo montada. Quando estiver pronta, a gente coloca tudo aqui.</p></div>
-    <div className="mt-[45px] min-[701px]:mt-20">{schedulePlaceholders.map(({ number, person, title }) => <article className="grid grid-cols-1 items-center gap-[26px] border-t border-[#dce4ea] py-[45px] text-center first:border-t-0 min-[701px]:grid-cols-[minmax(250px,35%)_1fr] min-[701px]:gap-[7%] min-[701px]:py-14 min-[701px]:text-left" key={number}>
-      <div className="flex min-h-[240px] items-center justify-center border border-dashed border-[#9fc2d1] bg-[#e9f2f5] text-center [font-family:'Space_Grotesk'] text-[2rem] font-bold leading-[.9] text-[#4d98b3] min-[701px]:min-h-[280px]"><span>SEPE<br /><b className="text-[1.2rem] text-[#168cd2]">2026</b></span></div>
-      <div className="flex flex-col items-center min-[701px]:items-start"><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">{number}</span><h3 className="mt-3 max-w-[620px] [font-family:'Space_Grotesk'] text-[clamp(1.65rem,3vw,2.65rem)] font-semibold leading-[1.08] tracking-[-.045em]">{person}</h3><p className="text-base font-bold text-[#176ca8]"><Mark>Em construção</Mark></p><p className="mt-3 text-sm font-semibold leading-6 text-[#678095]">Dia e horário a definir</p><p className="mt-5 max-w-[670px] text-left text-base leading-7 text-[#52697d]">{title}. Assim que tivermos as informações, atualizamos esta parte.</p><span className="mt-5 text-sm leading-6 text-[#7892a2]">A gente conta mais em breve</span></div>
-    </article>)}</div>
+    <div className="text-center"><p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#176ca8] min-[701px]:text-sm">PROGRAMAÇÃO 2026</p><h2 className="[font-family:'Space_Grotesk'] text-[clamp(2.15rem,5vw,3.75rem)] font-semibold leading-[1.06] tracking-[-.05em]">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="mx-auto mt-5 max-w-[650px] text-base leading-7 text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
+    <div className="mt-[45px] min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-[45px] first:border-t-0 min-[701px]:py-14" key={date}>
+      <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">DIA {number}</span><h3 className="mt-3 [font-family:'Space_Grotesk'] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-.045em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-bold text-[#176ca8] min-[701px]:mb-1 min-[701px]:mt-0"><Mark>Agenda do dia</Mark></p></div>
+      {events.length ? <div className="mt-8">{events.map(({ number: eventNumber, time, title, detail }) => <article className="grid grid-cols-1 items-center gap-[26px] border-t border-[#dce4ea] py-[45px] text-center first:border-t-0 min-[701px]:grid-cols-[minmax(250px,35%)_1fr] min-[701px]:gap-[7%] min-[701px]:py-14 min-[701px]:text-left" key={eventNumber}>
+        <div className="flex min-h-[240px] items-center justify-center border border-dashed border-[#9fc2d1] bg-[#e9f2f5] text-center [font-family:'Space_Grotesk'] text-[2rem] font-bold leading-[.9] text-[#4d98b3] min-[701px]:min-h-[280px]"><span>SEPE<br /><b className="text-[1.2rem] text-[#168cd2]">2026</b></span></div>
+        <div className="flex flex-col items-center min-[701px]:items-start"><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">{eventNumber}</span><h4 className="mt-3 max-w-[620px] [font-family:'Space_Grotesk'] text-[clamp(1.65rem,3vw,2.65rem)] font-semibold leading-[1.08] tracking-[-.045em]">{title}</h4><p className="text-base font-bold text-[#176ca8]"><Mark>{time}</Mark></p>{detail && <p className="mt-5 max-w-[670px] text-left text-base leading-7 text-[#52697d]">{detail}</p>}</div>
+      </article>)}</div> : <p className="mt-8 text-center text-base leading-7 text-[#7892a2]">Sem atividades informadas.</p>}
+    </section>)}</div>
   </section>
 }
 
