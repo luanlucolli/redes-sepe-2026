@@ -12,7 +12,7 @@ const schedule: ScheduleDay[] = [
     date: '05/10',
     weekday: 'Seg',
     events: [
-      { number: '01', time: '19h30 às 20h30', title: 'Segurança' },
+      { number: '01', time: '19h30 às 20h30', title: 'Segurança', detail: 'Palestrante: Seti Tecnologia' },
       { number: '02', time: '21h às 22h', title: 'Núcleo Jovem', detail: 'Tema: Empreendedorismo e Associativismo' },
     ],
   },
@@ -22,23 +22,23 @@ const schedule: ScheduleDay[] = [
     date: '07/10',
     weekday: 'Qua',
     events: [
-      { number: '03', time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group' },
-      { number: '04', time: '21h às 22h', title: 'CREAJunior' },
+      { number: '03', time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group', detail: 'Palestrante: Paulo Martins' },
+      { number: '04', time: '21h às 22h', title: 'CREAJunior', detail: 'Programa CREA Jr.' },
     ],
   },
   {
     number: '04',
     date: '08/10',
     weekday: 'Qui',
-    events: [{ number: '05', time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!' }],
+    events: [{ number: '05', time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!', detail: 'Palestrante: Anderson Cleis · Otzar Marcas e Patentes' }],
   },
   {
     number: '05',
     date: '09/10',
     weekday: 'Sex',
     events: [
-      { number: '06', time: '19h30 às 20h30', title: 'Git (Rodrigo)' },
-      { number: '07', time: '21h às 22h', title: 'Git (Rodrigo)' },
+      { number: '06', time: '19h30 às 20h30', title: 'Git', detail: 'Palestrante: Rodrigo' },
+      { number: '07', time: '21h às 22h', title: 'Git', detail: 'Palestrante: Rodrigo' },
     ],
   },
 ]
@@ -74,7 +74,7 @@ function Hero() {
     <div className="relative z-10 w-full max-w-[520px] min-[701px]:ml-[5vw] min-[701px]:w-[min(1200px,90%)] min-[701px]:max-w-none min-[701px]:pt-[50px]">
       <p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#75d5f3] min-[701px]:text-sm">REDES DE COMPUTADORES • IFC ARAQUARI</p>
       <h1 className="max-w-[11ch] [font-family:'Space_Grotesk'] text-[clamp(3.25rem,15vw,5.5rem)] font-semibold leading-[.92] tracking-[-.08em] min-[701px]:text-[clamp(4rem,8vw,7.4rem)]">Semana Acadêmica<br /><span className="text-[#6dd2ef]">2026</span></h1>
-      <p className="mt-6 text-[clamp(1.05rem,2vw,1.35rem)] leading-7 text-[#e6f4f8] min-[701px]:mt-7">Em breve a gente conta as datas</p>
+      <p className="mt-6 text-[clamp(1.05rem,2vw,1.35rem)] leading-7 text-[#e6f4f8] min-[701px]:mt-7">05 a 09 de outubro de 2026 · confira a programação abaixo</p>
       <a className="mt-9 inline-flex items-center gap-6 rounded-[3px] bg-[#4d9ab9aa] px-6 py-4 text-base font-bold leading-5 text-white" href="https://centraldeeventos.ifc.edu.br/sepe2025/" target="_blank" rel="noreferrer">Quero participar <span className="text-[1.35rem]">↗</span></a>
     </div>
     <a href="#programacao" className="absolute bottom-8 left-1/2 animate-bounce text-white" aria-label="Ver programação"><ArrowDown size={27} /></a>
