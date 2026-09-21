@@ -3,7 +3,7 @@ import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
-type ScheduleEvent = { number: string; time: string; title: string; detail?: string }
+type ScheduleEvent = { number: string; time: string; title: string; detail?: string; image?: string; imageAlt?: string }
 type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
 
 const schedule: ScheduleDay[] = [
@@ -12,7 +12,7 @@ const schedule: ScheduleDay[] = [
     date: '05/10',
     weekday: 'Seg',
     events: [
-      { number: '01', time: '19h30 às 20h30', title: 'Segurança', detail: 'Palestrante: Seti Tecnologia' },
+      { number: '01', time: '19h30 às 20h30', title: 'Segurança', detail: 'Palestrante: Seti Tecnologia', image: '/images/programacao/logo-seti.jpeg', imageAlt: 'Seti Tecnologia' },
       { number: '02', time: '21h às 22h', title: 'Núcleo Jovem', detail: 'Tema: Empreendedorismo e Associativismo' },
     ],
   },
@@ -86,8 +86,8 @@ function Programacao() {
     <div className="text-center"><p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#176ca8] min-[701px]:text-sm">PROGRAMAÇÃO 2026</p><h2 className="[font-family:'Space_Grotesk'] text-[clamp(2.15rem,5vw,3.75rem)] font-semibold leading-[1.06] tracking-[-.05em]">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="mx-auto mt-5 max-w-[650px] text-base leading-7 text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
     <div className="mt-[45px] min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-[45px] first:border-t-0 min-[701px]:py-14" key={date}>
       <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">DIA {number}</span><h3 className="mt-3 [font-family:'Space_Grotesk'] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-.045em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-bold text-[#176ca8] min-[701px]:mb-1 min-[701px]:mt-0"><Mark>Agenda do dia</Mark></p></div>
-      {events.length ? <div className="mt-8">{events.map(({ number: eventNumber, time, title, detail }) => <article className="grid grid-cols-1 items-center gap-[26px] border-t border-[#dce4ea] py-[45px] text-center first:border-t-0 min-[701px]:grid-cols-[minmax(250px,35%)_1fr] min-[701px]:gap-[7%] min-[701px]:py-14 min-[701px]:text-left" key={eventNumber}>
-        <div className="flex min-h-[240px] items-center justify-center border border-dashed border-[#9fc2d1] bg-[#e9f2f5] text-center [font-family:'Space_Grotesk'] text-[2rem] font-bold leading-[.9] text-[#4d98b3] min-[701px]:min-h-[280px]"><span>SEPE<br /><b className="text-[1.2rem] text-[#168cd2]">2026</b></span></div>
+      {events.length ? <div className="mt-8">{events.map(({ number: eventNumber, time, title, detail, image, imageAlt }) => <article className="grid grid-cols-1 items-center gap-[26px] border-t border-[#dce4ea] py-[45px] text-center first:border-t-0 min-[701px]:grid-cols-[minmax(250px,35%)_1fr] min-[701px]:gap-[7%] min-[701px]:py-14 min-[701px]:text-left" key={eventNumber}>
+        <div className="flex h-[240px] min-h-[240px] items-center justify-center overflow-hidden border border-dashed border-[#9fc2d1] bg-[#e9f2f5] text-center [font-family:'Space_Grotesk'] text-[2rem] font-bold leading-[.9] text-[#4d98b3] min-[701px]:h-[280px] min-[701px]:min-h-[280px]">{image ? <img className="h-full w-full object-cover" src={image} alt={imageAlt ?? title} /> : <span>SEPE<br /><b className="text-[1.2rem] text-[#168cd2]">2026</b></span>}</div>
         <div className="flex flex-col items-center min-[701px]:items-start"><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">{eventNumber}</span><h4 className="mt-3 max-w-[620px] [font-family:'Space_Grotesk'] text-[clamp(1.65rem,3vw,2.65rem)] font-semibold leading-[1.08] tracking-[-.045em]">{title}</h4><p className="text-base font-bold text-[#176ca8]"><Mark>{time}</Mark></p>{detail && <p className="mt-5 max-w-[670px] text-left text-base leading-7 text-[#52697d]">{detail}</p>}</div>
       </article>)}</div> : <p className="mt-8 text-center text-base leading-7 text-[#7892a2]">Sem atividades informadas.</p>}
     </section>)}</div>
