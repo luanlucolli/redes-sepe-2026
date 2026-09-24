@@ -12,33 +12,41 @@ const schedule: ScheduleDay[] = [
     date: '05/10',
     weekday: 'Seg',
     events: [
-      { number: '01', time: '19h30 às 20h30', title: 'Segurança', detail: 'Palestrante: Seti Tecnologia', image: '/images/programacao/logo-seti.jpeg', imageAlt: 'Seti Tecnologia' },
+      { number: '01', time: '19h30 às 20h30', title: 'Segurança', detail: 'Palestrante: Marcelo da Cruz Silvestrini · Seti', image: '/images/programacao/logo-seti.jpeg', imageAlt: 'Seti' },
       { number: '02', time: '21h às 22h', title: 'Núcleo Jovem', detail: 'Tema: Empreendedorismo e Associativismo' },
     ],
   },
-  { number: '02', date: '06/10', weekday: 'Ter', events: [] },
+  {
+    number: '02',
+    date: '06/10',
+    weekday: 'Ter',
+    events: [
+      { number: '03', time: '19h30 às 20h30', title: 'Palestra sobre redes de internet', detail: 'Palestrante: Danilo Ramos · SinFibra' },
+      { number: '04', time: '21h às 22h', title: 'Polícia Científica - O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite', detail: 'Palestrante: Pedro Lana' },
+    ],
+  },
   {
     number: '03',
     date: '07/10',
     weekday: 'Qua',
     events: [
-      { number: '03', time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group', detail: 'Palestrante: Paulo Martins' },
-      { number: '04', time: '21h às 22h', title: 'CREAJunior', detail: 'Programa CREA Jr.' },
+      { number: '05', time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group', detail: 'Palestrante: Paulo Martins' },
+      { number: '06', time: '21h às 22h', title: 'CREAJunior', detail: 'Programa CREA Jr.' },
     ],
   },
   {
     number: '04',
     date: '08/10',
     weekday: 'Qui',
-    events: [{ number: '05', time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!', detail: 'Palestrante: Anderson Cleis · Otzar Marcas e Patentes' }],
+    events: [{ number: '07', time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!', detail: 'Palestrante: Anderson Cleis · Otzar Marcas e Patentes' }],
   },
   {
     number: '05',
     date: '09/10',
     weekday: 'Sex',
     events: [
-      { number: '06', time: '19h30 às 20h30', title: 'Git', detail: 'Palestrante: Rodrigo' },
-      { number: '07', time: '21h às 22h', title: 'Git', detail: 'Palestrante: Rodrigo' },
+      { number: '08', time: '19h30 às 20h30', title: 'Tudo o que você precisa saber hoje sobre Serverless', detail: 'Palestrante: Evandro Pires' },
+      { number: '09', time: '21h às 22h', title: 'Git: fundamentos e conceitos básicos' },
     ],
   },
 ]
