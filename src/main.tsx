@@ -3,8 +3,10 @@ import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
-type ScheduleEvent = { number: string; time: string; title: string; detail?: string; image?: string; imageAlt?: string }
+type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; image?: string; imageAlt?: string }
 type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
+
+const speakerPhotoClip = 'polygon(12% 0, 100% 0, 100% 79%, 96% 79%, 100% 87%, 100% 100%, 0 100%, 0 25%, 8% 17%, 8% 8%)'
 
 const schedule: ScheduleDay[] = [
   {
@@ -12,8 +14,8 @@ const schedule: ScheduleDay[] = [
     date: '05/10',
     weekday: 'Seg',
     events: [
-      { number: '01', time: '19h30 às 20h30', title: 'Segurança', detail: 'Palestrante: Marcelo da Cruz Silvestrini · Seti', image: '/images/programacao/logo-seti.jpeg', imageAlt: 'Seti' },
-      { number: '02', time: '21h às 22h', title: 'Núcleo Jovem', detail: 'Tema: Empreendedorismo e Associativismo' },
+      { time: '19h30 às 20h30', title: 'Segurança', detail: 'Seti Tecnologia', speakerName: 'Marcelo da Cruz Silvestrini' },
+      { time: '21h às 22h', title: 'Núcleo Jovem', detail: 'Tema: Empreendedorismo e Associativismo' },
     ],
   },
   {
@@ -21,8 +23,8 @@ const schedule: ScheduleDay[] = [
     date: '06/10',
     weekday: 'Ter',
     events: [
-      { number: '03', time: '19h30 às 20h30', title: 'Palestra sobre redes de internet', detail: 'Palestrante: Danilo Ramos · SinFibra' },
-      { number: '04', time: '21h às 22h', title: 'Polícia Científica - O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite', detail: 'Palestrante: Pedro Lana' },
+      { time: '19h30 às 20h30', title: 'Palestra sobre redes de internet', detail: 'SinFibra', speakerName: 'Danilo Ramos' },
+      { time: '21h às 22h', title: 'Polícia Científica - O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite', speakerName: 'Pedro Lana' },
     ],
   },
   {
@@ -30,23 +32,36 @@ const schedule: ScheduleDay[] = [
     date: '07/10',
     weekday: 'Qua',
     events: [
-      { number: '05', time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group', detail: 'Palestrante: Paulo Martins' },
-      { number: '06', time: '21h às 22h', title: 'CREAJunior', detail: 'Programa CREA Jr.' },
+      { time: '19h30 às 20h30', title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group', speakerName: 'Paulo Martins' },
+      {
+        time: '21h às 22h',
+        title: 'CREA/SC',
+        speakerName: 'Ronaldo Azevedo',
+        image: '/images/programacao/foto-ronaldo-azevedo-crea-sc.jpeg',
+        imageAlt: 'Ronaldo Azevedo, palestrante do CREA/SC',
+        description: [
+          'Ronaldo Azevedo é engenheiro mecânico, com atuação em automação e sistemas, MBA em Gestão de Projetos pela USP – Fundação Vanzolini e em Engenharia de Custos pelo IBEC.',
+          'Com 25 anos de carreira, passou por grandes empresas nacionais e internacionais, liderando equipes e projetos de alta complexidade.',
+          'Há mais de 18 anos, é sócio-diretor da Metrios Engenharia, com mais de 100.000 m² de obras conduzidas em empreendimentos públicos e privados.',
+          'No CREA-SC, atua desde 2021 e, em 2026, assumiu como Inspetor-Chefe da Regional Joinville.',
+          'Sua trajetória une engenharia, gestão, empreendedorismo e liderança, com compromisso com a valorização da profissão e o desenvolvimento da sociedade.',
+        ],
+      },
     ],
   },
   {
     number: '04',
     date: '08/10',
     weekday: 'Qui',
-    events: [{ number: '07', time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!', detail: 'Palestrante: Anderson Cleis · Otzar Marcas e Patentes' }],
+    events: [{ time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!', detail: 'Otzar Marcas e Patentes', speakerName: 'Anderson Cleis' }],
   },
   {
     number: '05',
     date: '09/10',
     weekday: 'Sex',
     events: [
-      { number: '08', time: '19h30 às 20h30', title: 'Tudo o que você precisa saber hoje sobre Serverless', detail: 'Palestrante: Evandro Pires' },
-      { number: '09', time: '21h às 22h', title: 'Git: fundamentos e conceitos básicos' },
+      { time: '19h30 às 20h30', title: 'Tudo o que você precisa saber hoje sobre Serverless', speakerName: 'Evandro Pires' },
+      { time: '21h às 22h', title: 'Git: fundamentos e conceitos básicos' },
     ],
   },
 ]
@@ -94,9 +109,15 @@ function Programacao() {
     <div className="text-center"><p className="mb-5 text-xs font-bold leading-4 tracking-[.22em] text-[#176ca8] min-[701px]:text-sm">PROGRAMAÇÃO 2026</p><h2 className="[font-family:'Space_Grotesk'] text-[clamp(2.15rem,5vw,3.75rem)] font-semibold leading-[1.06] tracking-[-.05em]">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="mx-auto mt-5 max-w-[650px] text-base leading-7 text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
     <div className="mt-[45px] min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-[45px] first:border-t-0 min-[701px]:py-14" key={date}>
       <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">DIA {number}</span><h3 className="mt-3 [font-family:'Space_Grotesk'] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-.045em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-bold text-[#176ca8] min-[701px]:mb-1 min-[701px]:mt-0"><Mark>Agenda do dia</Mark></p></div>
-      {events.length ? <div className="mt-8">{events.map(({ number: eventNumber, time, title, detail, image, imageAlt }) => <article className="grid grid-cols-1 items-center gap-[26px] border-t border-[#dce4ea] py-[45px] text-center first:border-t-0 min-[701px]:grid-cols-[minmax(250px,35%)_1fr] min-[701px]:gap-[7%] min-[701px]:py-14 min-[701px]:text-left" key={eventNumber}>
-        <div className="flex h-[240px] min-h-[240px] items-center justify-center overflow-hidden border border-dashed border-[#9fc2d1] bg-[#e9f2f5] text-center [font-family:'Space_Grotesk'] text-[2rem] font-bold leading-[.9] text-[#4d98b3] min-[701px]:h-[280px] min-[701px]:min-h-[280px]">{image ? <img className="h-full w-full object-cover" src={image} alt={imageAlt ?? title} /> : <span>SEPE<br /><b className="text-[1.2rem] text-[#168cd2]">2026</b></span>}</div>
-        <div className="flex flex-col items-center min-[701px]:items-start"><span className="[font-family:'Space_Grotesk'] text-sm font-semibold tracking-[.12em] text-[#7bb9d3] min-[701px]:text-base">{eventNumber}</span><h4 className="mt-3 max-w-[620px] [font-family:'Space_Grotesk'] text-[clamp(1.65rem,3vw,2.65rem)] font-semibold leading-[1.08] tracking-[-.045em]">{title}</h4><p className="text-base font-bold text-[#176ca8]"><Mark>{time}</Mark></p>{detail && <p className="mt-5 max-w-[670px] text-left text-base leading-7 text-[#52697d]">{detail}</p>}</div>
+      {events.length ? <div className="mt-8">{events.map(({ time, title, detail, description, speakerName, image, imageAlt }) => <article className="grid grid-cols-1 items-center gap-[26px] border-t border-[#dce4ea] py-[45px] text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
+        <div className="relative h-[300px] min-h-[300px] bg-gradient-to-br from-[#8be1f5] via-[#3f9fbd] to-[#123d5b] shadow-[0_18px_45px_rgba(6,44,75,0.18)] min-[701px]:h-[360px] min-[701px]:min-h-[360px]" style={{ clipPath: speakerPhotoClip }}>
+          <div className="absolute inset-[3px] overflow-hidden bg-[#e9f2f5] text-center [font-family:'Space_Grotesk'] text-[2rem] font-bold leading-[.9] text-[#4d98b3]" style={{ clipPath: speakerPhotoClip }}>
+            {image ? <img className="h-full w-full object-cover" src={image} alt={imageAlt ?? title} /> : <div className="flex h-full items-center justify-center"><span>SEPE<br /><b className="text-[1.2rem] text-[#168cd2]">2026</b></span></div>}
+            <div aria-hidden="true" className="absolute left-[14%] top-[5%] h-[2px] w-12 bg-[#8be1f5]/80" />
+            {speakerName && <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111c]/95 via-[#07111c]/70 to-transparent px-4 pb-4 pt-14 text-left [font-family:'Space_Grotesk'] text-lg font-bold uppercase leading-tight tracking-[.02em] text-white min-[701px]:px-5 min-[701px]:pb-5 min-[701px]:text-xl">{speakerName}</div>}
+          </div>
+        </div>
+        <div className="flex flex-col items-center min-[701px]:items-start"><h4 className="mt-3 max-w-[620px] [font-family:'Space_Grotesk'] text-[clamp(1.65rem,3vw,2.65rem)] font-semibold leading-[1.08] tracking-[-.045em]">{title}</h4><p className="text-base font-bold text-[#176ca8]"><Mark>{time}</Mark></p>{detail && <p className="mt-5 max-w-[670px] text-left text-base leading-7 text-[#52697d]">{detail}</p>}{description && <div className="mt-5 max-w-[670px] text-left text-base leading-7 text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
       </article>)}</div> : <p className="mt-8 text-center text-base leading-7 text-[#7892a2]">Sem atividades informadas.</p>}
     </section>)}</div>
   </section>
