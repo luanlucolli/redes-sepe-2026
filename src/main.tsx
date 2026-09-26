@@ -178,7 +178,7 @@ function Hero() {
       <p className="section-kicker mb-4 text-[#75d5f3]">REDES DE COMPUTADORES • IFC ARAQUARI</p>
       <h1 className="max-w-[11ch] font-display text-[clamp(3.25rem,15vw,5.5rem)] font-semibold leading-[.98] tracking-[-.055em] min-[701px]:text-[clamp(4rem,8vw,7.4rem)] min-[701px]:tracking-[-.05em]">Semana Acadêmica<br /><span className="text-[#6dd2ef]">2026</span></h1>
       <p className="mt-5 max-w-[38rem] text-[clamp(1.125rem,2vw,1.4rem)] leading-8 text-[#e6f4f8] min-[701px]:mt-6">05 a 09 de outubro de 2026 · confira a programação abaixo</p>
-      <a className="mt-8 inline-flex min-h-[3.25rem] items-center gap-6 rounded-[3px] bg-[#4d9ab9aa] px-7 py-3.5 text-[1.0625rem] font-bold leading-5 text-white transition-colors hover:bg-[#4d9ab9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="https://centraldeeventos.ifc.edu.br/sepe2025/" target="_blank" rel="noreferrer">Quero participar <span className="text-[1.45rem]">↗</span></a>
+      <a className="mt-8 inline-flex min-h-[3.25rem] items-center gap-6 rounded-[3px] bg-[#4d9ab9aa] px-7 py-3.5 text-[1.0625rem] font-bold leading-5 text-white transition-colors hover:bg-[#4d9ab9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="https://centraldeeventos.ifc.edu.br/sepe2026/" target="_blank" rel="noreferrer">Quero participar <span className="text-[1.45rem]">↗</span></a>
     </div>
     <a href="#programacao" className="absolute bottom-8 left-1/2 rounded-sm p-2 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Ver programação"><ArrowDown size={27} /></a>
   </header>
