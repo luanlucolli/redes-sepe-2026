@@ -6,7 +6,33 @@ import './styles.css'
 type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; image?: string; imageAlt?: string }
 type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
 
-const speakerPhotoClip = 'polygon(12% 0, 100% 0, 100% 79%, 96% 79%, 100% 87%, 100% 100%, 0 100%, 0 25%, 8% 17%, 8% 8%)'
+const schedulePhotoFrames = [
+  'polygon(12% 0, 100% 0, 100% 79%, 96% 79%, 100% 87%, 100% 100%, 0 100%, 0 25%, 8% 17%, 8% 8%)',
+  'polygon(0 0, 88% 0, 100% 12%, 100% 100%, 14% 100%, 0 86%)',
+  'polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%, 0 15%, 8% 15%)',
+  'polygon(0 0, 100% 0, 100% 82%, 92% 82%, 100% 94%, 100% 100%, 0 100%, 0 18%, 8% 18%)',
+  'polygon(0 0, 82% 0, 100% 18%, 100% 100%, 0 100%, 0 70%, 7% 64%, 0 58%)',
+  'polygon(0 0, 100% 0, 100% 100%, 12% 100%, 0 88%, 0 24%, 6% 18%)',
+  'polygon(0 0, 100% 0, 100% 72%, 92% 80%, 100% 88%, 100% 100%, 0 100%)',
+  'polygon(0 0, 90% 0, 90% 8%, 100% 8%, 100% 100%, 0 100%, 0 18%, 8% 18%)',
+  'polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 12%)',
+  'polygon(0 0, 100% 0, 100% 90%, 90% 90%, 90% 100%, 0 100%, 0 22%, 10% 22%)',
+]
+
+function shufflePhotoFrames(frames: string[]) {
+  const shuffled = [...frames]
+  let seed = 2026
+  for (let index = shuffled.length - 1; index > 0; index--) {
+    seed = (seed * 1664525 + 1013904223) >>> 0
+    const swapIndex = seed % (index + 1)
+    const current = shuffled[index]
+    shuffled[index] = shuffled[swapIndex]
+    shuffled[swapIndex] = current
+  }
+  return shuffled
+}
+
+const randomizedSchedulePhotoFrames = shufflePhotoFrames(schedulePhotoFrames)
 
 const schedule: ScheduleDay[] = [
   {
@@ -134,20 +160,24 @@ function Hero() {
 }
 
 function Programacao() {
+  let photoFrameIndex = 0
   return <section id="programacao" className="mx-auto max-w-[1200px] bg-[#f5f7f8] px-[6vw] py-[90px] min-[701px]:px-[5vw] min-[701px]:py-[130px]">
     <div className="text-center"><p className="section-kicker mb-5 text-[#176ca8]">PROGRAMAÇÃO 2026</p><h2 className="section-title">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="section-copy mx-auto mt-5 max-w-[680px] text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
     <div className="mt-14 min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-12 first:border-t-0 min-[701px]:py-16" key={date}>
       <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="section-kicker text-[#426f86]">DIA {number}</span><h3 className="mt-3 font-display text-[clamp(2.15rem,4vw,3.35rem)] font-semibold leading-[1.08] tracking-[-.035em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-medium leading-6 text-[#516e7e] min-[701px]:mb-1 min-[701px]:mt-0">Agenda do dia</p></div>
-      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, image, imageAlt }) => <article className="grid grid-cols-1 items-center gap-7 border-t border-[#dce4ea] py-11 text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
-        <div className="relative h-[320px] min-h-[320px] bg-gradient-to-br from-[#8be1f5] via-[#3f9fbd] to-[#123d5b] shadow-[0_18px_45px_rgba(6,44,75,0.18)] min-[701px]:h-[390px] min-[701px]:min-h-[390px]" style={{ clipPath: speakerPhotoClip }}>
-          <div className="absolute inset-[3px] overflow-hidden bg-[#e9f2f5] text-center font-display text-[2.15rem] font-bold leading-[.9] text-[#4d98b3]" style={{ clipPath: speakerPhotoClip }}>
+      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, image, imageAlt }) => {
+        const photoClip = randomizedSchedulePhotoFrames[photoFrameIndex++ % randomizedSchedulePhotoFrames.length]
+        return <article className="grid grid-cols-1 items-center gap-7 border-t border-[#dce4ea] py-11 text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
+        <div className="relative h-[320px] min-h-[320px] bg-gradient-to-br from-[#8be1f5] via-[#3f9fbd] to-[#123d5b] shadow-[0_18px_45px_rgba(6,44,75,0.18)] min-[701px]:h-[390px] min-[701px]:min-h-[390px]" style={{ clipPath: photoClip }}>
+          <div className="absolute inset-[3px] overflow-hidden bg-[#e9f2f5] text-center font-display text-[2.15rem] font-bold leading-[.9] text-[#4d98b3]" style={{ clipPath: photoClip }}>
             {image ? <img className="h-full w-full object-cover" src={image} alt={imageAlt ?? title} /> : <div className="flex h-full items-center justify-center"><span>SEPE<br /><b className="text-[1.3rem] text-[#168cd2]">2026</b></span></div>}
             <div aria-hidden="true" className="absolute left-[14%] top-[5%] h-[2px] w-12 bg-[#8be1f5]/80" />
             {speakerName && <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111c]/95 via-[#07111c]/70 to-transparent px-5 pb-5 pt-16 text-left font-display text-[1.25rem] font-bold uppercase leading-[1.15] tracking-[.01em] text-white min-[701px]:px-6 min-[701px]:pb-6 min-[701px]:text-[1.45rem]">{speakerName}</div>}
           </div>
         </div>
         <div className="flex flex-col items-center min-[701px]:items-start"><p className="event-time mb-3 text-[#176ca8]"><Mark>{time}</Mark></p><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{description && <div className="event-copy mt-5 max-w-[670px] space-y-5 text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
-      </article>)}</div> : <p className="mt-8 text-center text-[1.0625rem] leading-8 text-[#617b8c]">Sem atividades informadas.</p>}
+      </article>
+      })}</div> : <p className="mt-8 text-center text-[1.0625rem] leading-8 text-[#617b8c]">Sem atividades informadas.</p>}
     </section>)}</div>
   </section>
 }
