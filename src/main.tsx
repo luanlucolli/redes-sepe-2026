@@ -71,10 +71,10 @@ const schedule: ScheduleDay[] = [
       {
         time: '19h30 às 20h30',
         title: 'No mundo conectado, onde tudo acontece em segundos, redes confiáveis são a diferença entre travar e avançar',
-        detail: 'SinFibra',
+        detail: 'Sim Fibra',
         speakerName: 'Danilo Ramos',
-        image: '/images/programacao/foto-danilo-ramos-sinfibra.jpeg',
-        imageAlt: 'Danilo Ramos, palestrante da SinFibra',
+        image: '/images/programacao/foto-danilo-ramos-sim-fibra.jpeg',
+        imageAlt: 'Danilo Ramos, palestrante da Sim Fibra',
       },
       {
         time: '21h às 22h',
