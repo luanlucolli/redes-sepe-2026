@@ -81,6 +81,8 @@ const schedule: ScheduleDay[] = [
         time: '19h30 às 20h30',
         title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group',
         speakerName: 'Paulo Martins',
+        image: '/images/programacao/foto-paulo-martins-aws-user-group.jpeg',
+        imageAlt: 'Paulo Martins, palestrante do AWS User Group',
         description: [
           'Paulo Martins é Senior Data Scientist no BMW Group | Pixida do Brasil, onde trabalha com pipelines de dados e detecção de anomalias em larga escala na AWS.',
           'Fora do ambiente corporativo, Paulo também é ativo na comunidade tech: organizou recentemente um Summit gratuito de IA que reuniu mais de 400 participantes, ligado à Voluta Soluções Digitais — empresa júnior que fundou na Universidade Federal de Ouro Preto (MG) e que recentemente completou 10 anos.',
