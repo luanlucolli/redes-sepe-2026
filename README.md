@@ -1,19 +1,19 @@
-# Redes SEPE 2026
+# redes sepe 2026
 
-Site da Semana Acadêmica de Redes de Computadores do IFC Araquari, realizada de 5 a 9 de outubro de 2026. Reúne a programação, informações dos palestrantes, apoiadores e local do evento.
+site da semana acadêmica de redes de computadores do ifc araquari, realizada de 5 a 9 de outubro de 2026. reúne a programação, informações dos palestrantes, apoiadores e local do evento.
 
-## Tecnologias
+## tecnologias
 
-React, TypeScript, Vite e Tailwind CSS.
+react, typescript, vite e tailwind css.
 
-## Desenvolvimento
+## desenvolvimento
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
+## build
 
 ```bash
 npm run typecheck
@@ -21,6 +21,6 @@ npm run build
 npm run preview
 ```
 
-## Publicação
+## publicação
 
-O site é publicado no Cloudflare Pages. A build gera os arquivos estáticos na pasta `dist`.
+o site é publicado no cloudflare pages. a build gera os arquivos estáticos na pasta `dist`.
