@@ -76,7 +76,14 @@ const schedule: ScheduleDay[] = [
         image: '/images/programacao/foto-danilo-ramos-sinfibra.jpeg',
         imageAlt: 'Danilo Ramos, palestrante da SinFibra',
       },
-      { time: '21h às 22h', title: 'O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite', detail: 'Polícia Científica', speakerName: 'Pedro Lana' },
+      {
+        time: '21h às 22h',
+        title: 'O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite',
+        detail: 'Polícia Científica',
+        speakerName: 'Pedro Lana',
+        image: '/images/programacao/foto-pedro-lana-policia-cientifica.jpeg',
+        imageAlt: 'Pedro Lana, palestrante da Polícia Científica',
+      },
     ],
   },
   {
