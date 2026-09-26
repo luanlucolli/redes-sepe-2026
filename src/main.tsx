@@ -140,8 +140,7 @@ const schedule: ScheduleDay[] = [
     date: '09/10',
     weekday: 'Sex',
     events: [
-      { time: '19h30 às 20h30', title: 'Git fundamentos e conceitos básicos', speakerName: 'Rodrigo Bastos' },
-      { time: '21h às 22h', title: 'Git fundamentos e conceitos básicos', speakerName: 'Rodrigo Bastos' },
+      { time: '19h30 às 20h30 e 21h às 22h', title: 'Git fundamentos e conceitos básicos', speakerName: 'Rodrigo Bastos' },
     ],
   },
 ]
