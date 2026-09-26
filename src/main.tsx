@@ -3,7 +3,7 @@ import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
-type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; image?: string; imageAlt?: string }
+type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; image?: string; imageAlt?: string; photoFrame?: string }
 type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
 
 const schedulePhotoFrames = [
@@ -131,6 +131,7 @@ const schedule: ScheduleDay[] = [
         speakerName: 'Anderson Cleis Otzar',
         image: '/images/programacao/foto-anderson-cleis-otzar-marcas-e-patentes.jpeg',
         imageAlt: 'Anderson Cleis Otzar, palestrante da Otzar Marcas e Patentes',
+        photoFrame: 'polygon(0 0, 88% 0, 100% 12%, 100% 84%, 92% 90%, 100% 96%, 100% 100%, 0 100%, 0 18%)',
       },
       { time: '21h às 22h', title: 'Tecnologias Rurais', detail: 'Gomes Máquinas', speakerName: 'Geison Souza' },
     ],
@@ -189,8 +190,9 @@ function Programacao() {
     <div className="text-center"><p className="section-kicker mb-5 text-[#176ca8]">PROGRAMAÇÃO 2026</p><h2 className="section-title">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="section-copy mx-auto mt-5 max-w-[680px] text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
     <div className="mt-14 min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-12 first:border-t-0 min-[701px]:py-16" key={date}>
       <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="section-kicker text-[#426f86]">DIA {number}</span><h3 className="mt-3 font-display text-[clamp(2.15rem,4vw,3.35rem)] font-semibold leading-[1.08] tracking-[-.035em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-medium leading-6 text-[#516e7e] min-[701px]:mb-1 min-[701px]:mt-0">Agenda do dia</p></div>
-      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, image, imageAlt }) => {
-        const photoClip = randomizedSchedulePhotoFrames[photoFrameIndex++ % randomizedSchedulePhotoFrames.length]
+      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, image, imageAlt, photoFrame }) => {
+        const photoClip = photoFrame ?? randomizedSchedulePhotoFrames[photoFrameIndex]
+        photoFrameIndex++
         return <article className="grid grid-cols-1 items-center gap-7 border-t border-[#dce4ea] py-11 text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
         <div className="relative h-[320px] min-h-[320px] bg-gradient-to-br from-[#8be1f5] via-[#3f9fbd] to-[#123d5b] shadow-[0_18px_45px_rgba(6,44,75,0.18)] min-[701px]:h-[390px] min-[701px]:min-h-[390px]" style={{ clipPath: photoClip }}>
           <div className="absolute inset-[3px] overflow-hidden bg-[#e9f2f5] text-center font-display text-[2.15rem] font-bold leading-[.9] text-[#4d98b3]" style={{ clipPath: photoClip }}>
