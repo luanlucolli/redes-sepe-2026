@@ -4,6 +4,37 @@
 
 @theme {
   --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+
+@layer components {
+  .section-kicker {
+    @apply font-display text-[.8125rem] font-bold leading-5 tracking-[.16em] min-[701px]:text-sm;
+  }
+
+  .section-title {
+    @apply font-display text-[clamp(2.25rem,5vw,4.1rem)] font-semibold leading-[1.08] tracking-[-.035em];
+  }
+
+  .event-title {
+    @apply font-display text-[clamp(1.625rem,2.8vw,2.35rem)] font-semibold leading-[1.14] tracking-[-.025em];
+  }
+
+  .section-copy {
+    @apply text-[1.0625rem] leading-8 min-[701px]:text-[1.125rem];
+  }
+
+  .event-time {
+    @apply text-[1.0625rem] font-bold leading-6 min-[701px]:text-[1.1875rem];
+  }
+
+  .event-detail {
+    @apply text-[1.0625rem] leading-8 min-[701px]:text-[1.125rem];
+  }
+
+  .event-copy {
+    @apply text-[1.0625rem] leading-8 min-[701px]:text-[1.125rem] min-[701px]:leading-8;
+  }
 }
 
 @layer base {
