@@ -23,4 +23,4 @@ npm run preview
 
 ## publicação
 
-o site é publicado no cloudflare pages. a build gera os arquivos estáticos na pasta `dist`.
+o site é publicado no cloudflare pages.
