@@ -177,7 +177,7 @@ function Programacao() {
             {speakerName && <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111c]/95 via-[#07111c]/70 to-transparent px-5 pb-5 pt-16 text-left font-display text-[1.25rem] font-bold uppercase leading-[1.15] tracking-[.01em] text-white min-[701px]:px-6 min-[701px]:pb-6 min-[701px]:text-[1.45rem]">{speakerName}</div>}
           </div>
         </div>
-        <div className="flex flex-col items-center min-[701px]:items-start"><p className="event-time mb-3 text-[#176ca8]"><Mark>{time}</Mark></p><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{description && <div className="event-copy mt-5 max-w-[670px] space-y-5 text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
+        <div className="flex flex-col items-center min-[701px]:items-start"><p className="event-time mb-3 text-[#176ca8]"><Mark>{time}</Mark></p><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{description && <div className="event-copy mt-5 max-w-[670px] text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
       </article>
       })}</div> : <p className="mt-8 text-center text-[1.0625rem] leading-8 text-[#617b8c]">Sem atividades informadas.</p>}
     </section>)}</div>
