@@ -68,7 +68,14 @@ const schedule: ScheduleDay[] = [
     date: '06/10',
     weekday: 'Ter',
     events: [
-      { time: '19h30 às 20h30', title: 'No mundo conectado, onde tudo acontece em segundos, redes confiáveis são a diferença entre travar e avançar', detail: 'SinFibra', speakerName: 'Danilo Ramos' },
+      {
+        time: '19h30 às 20h30',
+        title: 'No mundo conectado, onde tudo acontece em segundos, redes confiáveis são a diferença entre travar e avançar',
+        detail: 'SinFibra',
+        speakerName: 'Danilo Ramos',
+        image: '/images/programacao/foto-danilo-ramos-sinfibra.jpeg',
+        imageAlt: 'Danilo Ramos, palestrante da SinFibra',
+      },
       { time: '21h às 22h', title: 'O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite', detail: 'Polícia Científica', speakerName: 'Pedro Lana' },
     ],
   },
@@ -110,7 +117,14 @@ const schedule: ScheduleDay[] = [
     date: '08/10',
     weekday: 'Qui',
     events: [
-      { time: '19h30 às 20h30', title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!', detail: 'Otzar Marcas e Patentes', speakerName: 'Anderson Cleis Otzar' },
+      {
+        time: '19h30 às 20h30',
+        title: 'Tecnologia, Sistemas e Propriedade Intelectual: Um Tesouro a Ser Protegido!',
+        detail: 'Otzar Marcas e Patentes',
+        speakerName: 'Anderson Cleis Otzar',
+        image: '/images/programacao/foto-anderson-cleis-otzar-marcas-e-patentes.jpeg',
+        imageAlt: 'Anderson Cleis Otzar, palestrante da Otzar Marcas e Patentes',
+      },
       { time: '21h às 22h', title: 'Tecnologias Rurais', detail: 'Gomes Máquinas', speakerName: 'Geison Souza' },
     ],
   },
