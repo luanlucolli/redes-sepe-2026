@@ -54,6 +54,8 @@ const schedule: ScheduleDay[] = [
         title: 'Empreendedorismo e Associativismo',
         detail: 'Núcleo Jovem da ACIAA',
         speakerName: 'Fabiano Floriani Garcia',
+        image: '/images/programacao/foto-fabiano-floriani-garcia-nucleo-jovem-aciaa.jpeg',
+        imageAlt: 'Fabiano Floriani Garcia, palestrante do Núcleo Jovem da ACIAA',
         description: [
           'Fabiano Floriani Garcia é empresário e atua na Parati Ambiental Engenharia e Consultoria Ambiental e Agrícola e na Barra 7 Empreendimentos, onde trabalha como engenheiro. É mestre em Engenharia de Processos, especialista em Georreferenciamento de Imóveis Rurais, engenheiro ambiental e técnico em Agropecuária.',
           'É presidente do Lions Clube de Araquari e fundador e ex-coordenador do Núcleo de Jovens Empreendedores de Araquari. É casado e pai da Isabela.',
