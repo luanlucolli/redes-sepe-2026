@@ -21,6 +21,6 @@ npm run build
 npm run preview
 ```
 
-## publicação
+## deploy
 
 o site é publicado no cloudflare pages.
