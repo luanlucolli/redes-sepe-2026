@@ -70,11 +70,12 @@ const schedule: ScheduleDay[] = [
     events: [
       {
         time: '19h30 às 20h30',
-        title: 'No mundo conectado, onde tudo acontece em segundos, redes confiáveis são a diferença entre travar e avançar',
+        title: 'Redes confiáveis: a diferença entre travar e avançar',
         detail: 'Sim Fibra',
         speakerName: 'Danilo Ramos',
         image: '/images/programacao/foto-danilo-ramos-sim-fibra.jpeg',
         imageAlt: 'Danilo Ramos, palestrante da Sim Fibra',
+        description: ['Danilo Ramos é gerente de rede na Sim Fibra Provedores de Internet desde março de 2019. Atua em gerência, monitoramento e implantação de redes de longa distância, com foco em plataformas Cisco e Huawei.'],
       },
       {
         time: '21h às 22h',
@@ -83,6 +84,7 @@ const schedule: ScheduleDay[] = [
         speakerName: 'Pedro Lana',
         image: '/images/programacao/foto-pedro-lana-policia-cientifica.jpeg',
         imageAlt: 'Pedro Lana, palestrante da Polícia Científica',
+        description: ['Pedro Lana é Perito Criminal Oficial na área de Computação Forense da Polícia Científica de Santa Catarina, antigo Instituto Geral de Perícias (IGP/SC). É graduado pelo Centro Universitário do Leste de Minas Gerais (Unileste) e atua em Curitiba e região.'],
       },
     ],
   },
@@ -133,7 +135,19 @@ const schedule: ScheduleDay[] = [
         imageAlt: 'Anderson Cleis Otzar, palestrante da Otzar Marcas e Patentes',
         photoFrame: 'polygon(0 0, 88% 0, 100% 12%, 100% 84%, 92% 90%, 100% 96%, 100% 100%, 0 100%, 0 18%)',
       },
-      { time: '21h às 22h', title: 'Tecnologias Rurais', detail: 'Gomes Máquinas', speakerName: 'Geison Souza' },
+      {
+        time: '21h às 22h',
+        title: 'Tecnologias Rurais',
+        detail: 'Gomes Máquinas',
+        speakerName: 'Geison Alan de Souza',
+        image: '/images/programacao/foto-geison-alan-de-souza-gomes-maquinas.jpeg',
+        imageAlt: 'Geison Alan de Souza, palestrante da Gomes Máquinas',
+        description: [
+          'Geison Alan de Souza construiu sua trajetória no agronegócio com dedicação, conhecimento e paixão pelo campo. Foram 25 anos de história na Gomes Máquinas, onde trabalhou como funcionário, em uma jornada de muito aprendizado, experiência e proximidade com o produtor rural.',
+          'Hoje, é sócio-proprietário da SC3 Gomes, localizada em Araquari (SC), e da AGROSOUL, localizada em Turvo (SC). Ele transforma a experiência adquirida em novos projetos, oportunidades e soluções para o agronegócio.',
+          'Uma história que começou com o trabalho, cresceu com a experiência e segue sendo construída com empreendedorismo, compromisso e amor pelo campo.',
+        ],
+      },
     ],
   },
   {
@@ -141,7 +155,14 @@ const schedule: ScheduleDay[] = [
     date: '09/10',
     weekday: 'Sex',
     events: [
-      { time: '19h30 às 20h30 e 21h às 22h', title: 'Git fundamentos e conceitos básicos', speakerName: 'Rodrigo Bastos' },
+      {
+        time: '19h30 às 20h30 e 21h às 22h',
+        title: 'Git fundamentos e conceitos básicos',
+        speakerName: 'Rodrigo Bastos',
+        image: '/images/programacao/foto-rodrigo-bastos-git.jpeg',
+        imageAlt: 'Rodrigo Bastos durante uma apresentação de tecnologia',
+        description: ['Rodrigo Bastos é desenvolvedor de software há mais de 7 anos, com foco em front-end, arquitetura de interfaces e criação de componentes reutilizáveis. Tem experiência com Angular, React, Vue.js, JavaScript e TypeScript, além de atuar com back-end e desenvolvimento mobile híbrido. Também possui experiência em liderança técnica e mentoria, apoiando a colaboração e o desenvolvimento de equipes.'],
+      },
     ],
   },
 ]
