@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://redes-sepe-2026.pages.dev/sitemap.xml
