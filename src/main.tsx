@@ -123,6 +123,7 @@ const schedule: ScheduleDay[] = [
         image: '/images/programacao/foto-anderson-cleis-otzar-marcas-e-patentes.jpeg',
         imageAlt: 'Anderson Cleis Otzar, palestrante da Otzar Marcas e Patentes',
         photoFrame: 'polygon(0 0, 88% 0, 100% 12%, 100% 84%, 92% 90%, 100% 96%, 100% 100%, 0 100%, 0 18%)',
+        description: ['Anderson Cleis Otzar atua há mais de 20 anos com Propriedade Intelectual, ajudando empresas, empreendedores e organizações a proteger e valorizar marcas, patentes e direitos autorais. Em maio de 2025, iniciou a Otzar Marcas & Patentes, onde desenvolve estratégias personalizadas para fortalecer negócios e oferecer segurança jurídica, com ética, transparência e responsabilidade.'],
       },
       {
         time: '21h às 22h',
