@@ -3,7 +3,7 @@ import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
-type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; image?: string; imageAlt?: string; photoFrame?: string }
+type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; speakerEmail?: string; image?: string; imageAlt?: string; photoFrame?: string }
 type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
 
 const schedulePhotoFrames = [
@@ -97,6 +97,7 @@ const schedule: ScheduleDay[] = [
         time: '19h30 às 20h30',
         title: 'Conversando com os dados: do raw data ao QuickSight conversacional - AWS User Group',
         speakerName: 'Paulo Martins',
+        speakerEmail: 'martins.paulohenriqueleal@gmail.com',
         image: '/images/programacao/foto-paulo-martins-aws-user-group.jpeg',
         imageAlt: 'Paulo Martins, palestrante do AWS User Group',
         description: [
@@ -211,7 +212,7 @@ function Programacao() {
     <div className="text-center"><p className="section-kicker mb-5 text-[#176ca8]">PROGRAMAÇÃO 2026</p><h2 className="section-title">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="section-copy mx-auto mt-5 max-w-[680px] text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
     <div className="mt-14 min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-12 first:border-t-0 min-[701px]:py-16" key={date}>
       <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="section-kicker text-[#426f86]">DIA {number}</span><h3 className="mt-3 font-display text-[clamp(2.15rem,4vw,3.35rem)] font-semibold leading-[1.08] tracking-[-.035em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-medium leading-6 text-[#516e7e] min-[701px]:mb-1 min-[701px]:mt-0">Agenda do dia</p></div>
-      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, image, imageAlt, photoFrame }) => {
+      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, speakerEmail, image, imageAlt, photoFrame }) => {
         const photoClip = photoFrame ?? randomizedSchedulePhotoFrames[photoFrameIndex]
         photoFrameIndex++
         return <article className="grid grid-cols-1 items-center gap-7 border-t border-[#dce4ea] py-11 text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
@@ -222,7 +223,7 @@ function Programacao() {
             {speakerName && <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111c]/95 via-[#07111c]/70 to-transparent px-5 pb-5 pt-16 text-left font-display text-[1.25rem] font-bold uppercase leading-[1.15] tracking-[.01em] text-white min-[701px]:px-6 min-[701px]:pb-6 min-[701px]:text-[1.45rem]">{speakerName}</div>}
           </div>
         </div>
-        <div className="flex flex-col items-center min-[701px]:items-start"><p className="event-time mb-3 text-[#176ca8]"><Mark>{time}</Mark></p><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{description && <div className="event-copy mt-5 max-w-[670px] text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
+        <div className="flex flex-col items-center min-[701px]:items-start"><p className="event-time mb-3 text-[#176ca8]"><Mark>{time}</Mark></p><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{speakerEmail && <a className="event-detail mt-5 max-w-[670px] break-all text-left text-[#176ca8] underline decoration-[#176ca8]/40 underline-offset-4 hover:text-[#0c4f79] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#176ca8]" href={`mailto:${speakerEmail}`}>{speakerEmail}</a>}{description && <div className="event-copy mt-5 max-w-[670px] text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
       </article>
       })}</div> : <p className="mt-8 text-center text-[1.0625rem] leading-8 text-[#617b8c]">Sem atividades informadas.</p>}
     </section>)}</div>
