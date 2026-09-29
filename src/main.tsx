@@ -3,7 +3,7 @@ import { ViteReactSSG } from 'vite-react-ssg/single-page'
 import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
-type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; speakerEmail?: string; image?: string; imageAlt?: string; photoFrame?: string }
+type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; speakerEmail?: string; image?: string; imageAlt?: string; photoFrame?: string; photoPosition?: string }
 type ScheduleDay = { number: string; date: string; weekday: string; events: ScheduleEvent[] }
 
 const schedulePhotoFrames = [
@@ -56,6 +56,7 @@ const schedule: ScheduleDay[] = [
         speakerName: 'Fabiano Floriani Garcia',
         image: '/images/programacao/foto-fabiano-floriani-garcia-nucleo-jovem-aciaa.jpeg',
         imageAlt: 'Fabiano Floriani Garcia, palestrante do Núcleo Jovem da ACIAA',
+        photoPosition: 'center top',
         description: ['Fabiano Floriani Garcia é empresário na Parati Ambiental Engenharia e Consultoria Ambiental e Agrícola e na Barra 7 Empreendimentos, onde atua como engenheiro. É mestre em Engenharia de Processos, especialista em Georreferenciamento de Imóveis Rurais, engenheiro ambiental e técnico em Agropecuária. Também preside o Lions Clube de Araquari e fundou e coordenou o Núcleo de Jovens Empreendedores local.'],
       },
     ],
@@ -132,6 +133,7 @@ const schedule: ScheduleDay[] = [
         speakerName: 'Geison Alan de Souza',
         image: '/images/programacao/foto-geison-alan-de-souza-gomes-maquinas.jpeg',
         imageAlt: 'Geison Alan de Souza, palestrante da Gomes Máquinas',
+        photoPosition: 'center top',
         description: ['Geison Alan de Souza construiu sua carreira no agronegócio ao longo de 25 anos na Gomes Máquinas, onde trabalhou próximo dos produtores rurais. Hoje, é sócio-proprietário da SC3 Gomes, em Araquari, e da AGROSOUL, em Turvo. Leva sua experiência para novos projetos e soluções para o setor, com compromisso e conhecimento do campo.'],
       },
     ],
@@ -197,13 +199,13 @@ function Programacao() {
     <div className="text-center"><p className="section-kicker mb-5 text-[#176ca8]">PROGRAMAÇÃO 2026</p><h2 className="section-title">Um pouco de tecnologia,<br /> boas conversas e novas ideias.</h2><p className="section-copy mx-auto mt-5 max-w-[680px] text-[#678095]">Confira as atividades programadas para cada dia do SEPE.</p></div>
     <div className="mt-14 min-[701px]:mt-20">{schedule.map(({ number, date, weekday, events }) => <section className="border-t border-[#dce4ea] py-12 first:border-t-0 min-[701px]:py-16" key={date}>
       <div className="flex flex-col items-center text-center min-[701px]:flex-row min-[701px]:items-end min-[701px]:justify-between min-[701px]:text-left"><div><span className="section-kicker text-[#426f86]">DIA {number}</span><h3 className="mt-3 font-display text-[clamp(2.15rem,4vw,3.35rem)] font-semibold leading-[1.08] tracking-[-.035em]">{date} - {weekday}</h3></div><p className="mt-3 text-base font-medium leading-6 text-[#516e7e] min-[701px]:mb-1 min-[701px]:mt-0">Agenda do dia</p></div>
-      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, speakerEmail, image, imageAlt, photoFrame }) => {
+      {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, speakerEmail, image, imageAlt, photoFrame, photoPosition }) => {
         const photoClip = photoFrame ?? randomizedSchedulePhotoFrames[photoFrameIndex]
         photoFrameIndex++
         return <article className="grid grid-cols-1 items-center gap-7 border-t border-[#dce4ea] py-11 text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
         <div className="relative h-[320px] min-h-[320px] bg-gradient-to-br from-[#8be1f5] via-[#3f9fbd] to-[#123d5b] shadow-[0_18px_45px_rgba(6,44,75,0.18)] min-[701px]:h-[390px] min-[701px]:min-h-[390px]" style={{ clipPath: photoClip }}>
           <div className="absolute inset-[3px] overflow-hidden bg-[#e9f2f5] text-center font-display text-[2.15rem] font-bold leading-[.9] text-[#4d98b3]" style={{ clipPath: photoClip }}>
-            {image ? <img className="h-full w-full object-cover" src={image} alt={imageAlt ?? title} /> : <div className="flex h-full items-center justify-center"><span>SEPE<br /><b className="text-[1.3rem] text-[#168cd2]">2026</b></span></div>}
+            {image ? <img className="h-full w-full object-cover" style={photoPosition ? { objectPosition: photoPosition } : undefined} src={image} alt={imageAlt ?? title} /> : <div className="flex h-full items-center justify-center"><span>SEPE<br /><b className="text-[1.3rem] text-[#168cd2]">2026</b></span></div>}
             <div aria-hidden="true" className="absolute left-[14%] top-[5%] h-[2px] w-12 bg-[#8be1f5]/80" />
             {speakerName && <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111c]/95 via-[#07111c]/70 to-transparent px-5 pb-5 pt-16 text-left font-display text-[1.25rem] font-bold uppercase leading-[1.15] tracking-[.01em] text-white min-[701px]:px-6 min-[701px]:pb-6 min-[701px]:text-[1.45rem]">{speakerName}</div>}
           </div>
