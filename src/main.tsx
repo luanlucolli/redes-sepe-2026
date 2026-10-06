@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { ViteReactSSG } from 'vite-react-ssg/single-page'
-import { ArrowDown, MapPin, Menu, X } from 'lucide-react'
+import { ArrowDown, Check, MapPin, Menu, X } from 'lucide-react'
 import './styles.css'
 
 type ScheduleEvent = { time: string; title: string; detail?: string; description?: string[]; speakerName?: string; speakerEmail?: string; image?: string; imageAlt?: string; photoFrame?: string; photoPosition?: string }
@@ -33,6 +33,16 @@ function shufflePhotoFrames(frames: string[]) {
 }
 
 const randomizedSchedulePhotoFrames = shufflePhotoFrames(schedulePhotoFrames)
+
+function eventHasEnded(date: string, time: string) {
+  const [day, month] = date.split('/').map(Number)
+  const endTimes = time.match(/\d{1,2}h\d{0,2}/g)
+  if (!endTimes) return false
+
+  const [hour, minute = '00'] = endTimes[endTimes.length - 1].split('h')
+  const eventEnd = new Date(`2026-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T${hour.padStart(2, '0')}:${minute.padEnd(2, '0')}:00-03:00`)
+  return Date.now() >= eventEnd.getTime()
+}
 
 const schedule: ScheduleDay[] = [
   {
@@ -74,15 +84,6 @@ const schedule: ScheduleDay[] = [
         image: '/images/programacao/foto-danilo-ramos-sim-fibra.jpeg',
         imageAlt: 'Danilo Ramos, palestrante da Sim Fibra',
         description: ['Danilo Ramos é gerente de rede na Sim Fibra Provedores de Internet desde março de 2019. Atua na gerência, no monitoramento e na implantação de redes de longa distância, com foco em plataformas Cisco e Huawei.'],
-      },
-      {
-        time: '21h às 22h',
-        title: 'O Novo Horizonte da TI: Segurança, Investigação e o Mercado de Elite',
-        detail: 'Polícia Científica',
-        speakerName: 'Pedro Lana',
-        image: '/images/programacao/foto-pedro-lana-policia-cientifica.jpeg',
-        imageAlt: 'Pedro Lana, palestrante da Polícia Científica',
-        description: ['Pedro Lana é Perito Criminal Oficial de Computação Forense na Polícia Científica de Santa Catarina, anteriormente chamada Instituto Geral de Perícias (IGP/SC). É graduado pelo Centro Universitário do Leste de Minas Gerais (Unileste), e seu perfil profissional indica Curitiba e região.'],
       },
     ],
   },
@@ -202,6 +203,7 @@ function Programacao() {
       {events.length ? <div className="mt-9 min-[701px]:mt-10">{events.map(({ time, title, detail, description, speakerName, speakerEmail, image, imageAlt, photoFrame, photoPosition }) => {
         const photoClip = photoFrame ?? randomizedSchedulePhotoFrames[photoFrameIndex]
         photoFrameIndex++
+        const ended = eventHasEnded(date, time)
         return <article className="grid grid-cols-1 items-center gap-7 border-t border-[#dce4ea] py-11 text-center first:border-t-0 min-[701px]:grid-cols-[minmax(300px,40%)_1fr] min-[701px]:gap-[6%] min-[701px]:py-14 min-[701px]:text-left" key={`${date}-${time}-${title}`}>
         <div className="relative h-[320px] min-h-[320px] bg-gradient-to-br from-[#8be1f5] via-[#3f9fbd] to-[#123d5b] shadow-[0_18px_45px_rgba(6,44,75,0.18)] min-[701px]:h-[390px] min-[701px]:min-h-[390px]" style={{ clipPath: photoClip }}>
           <div className="absolute inset-[3px] overflow-hidden bg-[#e9f2f5] text-center font-display text-[2.15rem] font-bold leading-[.9] text-[#4d98b3]" style={{ clipPath: photoClip }}>
@@ -210,7 +212,7 @@ function Programacao() {
             {speakerName && <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111c]/95 via-[#07111c]/70 to-transparent px-5 pb-5 pt-16 text-left font-display text-[1.25rem] font-bold uppercase leading-[1.15] tracking-[.01em] text-white min-[701px]:px-6 min-[701px]:pb-6 min-[701px]:text-[1.45rem]">{speakerName}</div>}
           </div>
         </div>
-        <div className="flex flex-col items-center min-[701px]:items-start"><p className="event-time mb-3 text-[#176ca8]"><Mark>{time}</Mark></p><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{speakerEmail && <a className="event-detail mt-5 max-w-[670px] break-all text-left text-[#176ca8] underline decoration-[#176ca8]/40 underline-offset-4 hover:text-[#0c4f79] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#176ca8]" href={`mailto:${speakerEmail}`}>{speakerEmail}</a>}{description && <div className="event-copy mt-5 max-w-[670px] text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
+        <div className="flex flex-col items-center min-[701px]:items-start"><div className="mb-3 flex flex-wrap items-center justify-center gap-3 min-[701px]:justify-start"><p className="event-time text-[#176ca8]"><Mark>{time}</Mark></p>{ended && <span className="inline-flex items-center gap-1.5 rounded-full border border-[#c6dcd2] bg-[#e8f2ee] px-3 py-1 text-xs font-bold text-[#225d47]" aria-label="Palestra encerrada"><Check size={14} aria-hidden="true" />Encerrada</span>}</div><h4 className="event-title max-w-[640px]">{title}</h4>{detail && <p className="event-detail mt-5 max-w-[670px] text-left text-[#52697d]">{detail}</p>}{speakerEmail && <a className="event-detail mt-5 max-w-[670px] break-all text-left text-[#176ca8] underline decoration-[#176ca8]/40 underline-offset-4 hover:text-[#0c4f79] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#176ca8]" href={`mailto:${speakerEmail}`}>{speakerEmail}</a>}{description && <div className="event-copy mt-5 max-w-[670px] text-left text-[#52697d]">{description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>}</div>
       </article>
       })}</div> : <p className="mt-8 text-center text-[1.0625rem] leading-8 text-[#617b8c]">Sem atividades informadas.</p>}
     </section>)}</div>
