@@ -169,7 +169,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const links = [['programacao', 'Programação'], ['apoiadores', 'Apoiadores'], ['local', 'Local'], ['organizacao', 'Organização']]
+  const links = [['programacao', 'Programação'], ['local', 'Local'], ['organizacao', 'Organização']]
 
   return <nav className={`fixed inset-x-0 top-0 z-50 flex h-[68px] items-center justify-between px-[6vw] text-white transition-colors min-[701px]:h-[82px] min-[701px]:px-[5vw] ${scrolled ? 'bg-[#05233d]/95 shadow-lg' : 'bg-transparent'}`}>
     <a href="#top" className="relative z-20 -translate-y-0.5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6ed2f2]"><img className="block w-[92px] min-[701px]:w-28" src="/images/logo-sepe.png" alt="SEPE" /></a>
@@ -217,17 +217,13 @@ function Programacao() {
   </section>
 }
 
-function Sponsors() {
-  return <section id="apoiadores" className="bg-[#f5f7f8] px-[6vw] py-[90px] min-[701px]:py-[130px]"><div className="mx-auto max-w-[1200px]"><div className="text-center"><p className="section-kicker mb-5 text-[#176ca8]">APOIADORES 2026</p><h2 className="section-title">Quem ajuda o SEPE<br />a acontecer.</h2><p className="section-copy mx-auto mt-5 max-w-[680px] text-[#678095]">Ainda estamos fechando as parcerias. Em breve os nomes aparecem aqui.</p></div><div className="mx-auto mt-14 grid max-w-[1000px] grid-cols-3 gap-[26px_13px] min-[701px]:mt-20 min-[701px]:grid-cols-4 min-[701px]:gap-6"><div className="col-span-full hidden" />{Array.from({ length: 8 }, (_, index) => <div className="flex min-h-[115px] w-full flex-col items-center justify-center gap-2 border border-dashed border-[#a9c8d5] bg-[#f4f8f9] px-2 text-center text-[#6990a1]" key={index}><span className="font-display text-base font-semibold min-[701px]:text-[1.125rem]">Apoiador</span><small className="text-[.6875rem] font-bold leading-4 tracking-[.12em] text-[#3da4c4]">LOGO EM BREVE</small></div>)}</div></div></section>
-}
-
 function LegacyLocation() {
   return <section id="local" className="bg-[linear-gradient(90deg,#062c4bef,#062c4bcc),url('/images/campus-ifc-1.jpg')] bg-cover bg-center px-[6vw] py-[90px] text-white min-[701px]:py-[130px]"><div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-[45px] min-[701px]:grid-cols-[1fr_1.08fr] min-[701px]:gap-[9%]"><div><p className="section-kicker mb-5 text-[#71d0ee]">ONDE VAI SER</p><h2 className="section-title">A gente se encontra<br />no IFC Araquari.</h2><p className="section-copy mt-5 max-w-[470px] text-[#e2eef2]">O evento acontece no Campus Araquari. Se você ainda não conhece o lugar, fica aqui o mapa para ajudar.</p><div className="mt-7 flex items-start gap-3 text-[1.0625rem] leading-8 text-[#d6e8ee] min-[701px]:text-[1.125rem]"><MapPin className="mt-1.5 w-5 shrink-0 text-[#6dd2ef]" /> <span>Rodovia BR 280, km 27<br />Araquari - SC</span></div></div><div className="border-[10px] border-white/[.09] shadow-2xl"><iframe className="block h-[290px] w-full border-0 min-[701px]:h-[370px]" title="Mapa do IFC Campus Araquari" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.768343468094!2d-48.738091057593266!3d-26.394939728746323!2m3!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb5609af7afc5%3A0x34c75ce16022aa6a!2sInstituto%20Federal%20Catarinense%20-%20Campus%20Araquari!5e0!3m2!1spt-BR!2sbr!4v1694950000000!5m2!1spt-BR!2sbr" loading="lazy" /></div></div></section>
 }
 
 function Organization() { return <section id="organizacao" className="bg-[#f5f7f8] px-[6vw] py-[90px] text-center min-[701px]:py-[130px]"><div className="mx-auto max-w-[1200px]"><p className="section-kicker mb-5 text-[#176ca8]">QUEM ESTÁ FAZENDO</p><h2 className="section-title">Feito pelos graduandos<br />de Redes de Computadores.</h2><div className="mt-10 flex flex-wrap items-center justify-center gap-[50px]"><img className="max-h-[95px] max-w-[200px] object-contain" src="/images/logo-ifc.png" alt="Instituto Federal Catarinense" /><img className="max-h-[95px] max-w-[200px] object-contain" src="/images/logo-redes-sem-texto.png" alt="CST Redes de Computadores" /></div></div></section> }
 
-function App() { return <div className="scroll-smooth bg-[#f5f7f8] font-sans text-[#102b43]"><Navbar /><Hero /><main><Programacao /><Sponsors /><Location /><Organization /></main><footer className="flex flex-col gap-2 bg-[#062c4b] px-[8vw] py-6 text-center text-base leading-6 text-[#bdd1db] min-[701px]:flex-row min-[701px]:justify-between"><span>SEPE 2026</span><span>Organizado pelos graduandos de Redes de Computadores</span></footer></div> }
+function App() { return <div className="scroll-smooth bg-[#f5f7f8] font-sans text-[#102b43]"><Navbar /><Hero /><main><Programacao /><Location /><Organization /></main><footer className="flex flex-col gap-2 bg-[#062c4b] px-[8vw] py-6 text-center text-base leading-6 text-[#bdd1db] min-[701px]:flex-row min-[701px]:justify-between"><span>SEPE 2026</span><span>Organizado pelos graduandos de Redes de Computadores</span></footer></div> }
 
 function Location() {
   const [activeImage, setActiveImage] = useState(0)
